@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/bootstrap";
+h1 {
+    margin-bottom: 20px;
+    font-size: 100px;
+}
+
+.card {
+    box-shadow: 0 2px 4px rbga(204, 204, 204, 0.8);
+    padding: 20px 40px;
+}

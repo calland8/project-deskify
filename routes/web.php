@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Auth\GoogleLoginController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth\GoogleSocialiteController;
+use App\Http\Controllers\Admin\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,14 +20,23 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/my-profile', function () {
+    return view('my-profile');
+})->middleware(['auth', 'verified'])->name('my-profile');
+
+require __DIR__ . '/auth.php';
+
+
+//google login routes
+Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleLoginController::class, 'handleCallback']);
+
+
+//admin routes 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('/users', AdminController::class);
 });
