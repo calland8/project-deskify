@@ -11,31 +11,28 @@
 </head>
 
 <body>
-    <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-        <!-- Primary Navigation Menu -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <!-- Logo -->
-                    <div class="shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}">
-                            <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                        </a>
-                    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- Container wrapper -->
+        <div class="container">
+            <!-- Navbar brand -->
+            <a class="navbar-brand me-2" href="">
+                DESKIFY
+            </a>
 
-                    <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Bookings') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('dashboard')">
-                            {{ __('Users') }}
-                        </x-nav-link>
-                    </div>
-                </div>
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">{{ __('Bookings') }}</a>
+                    </li>
+                    @can('isAdmin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __('Users') }}</a>
+                    </li>
+                    @endcan
+                </ul>
 
 
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -58,6 +55,7 @@
                     </div>
                 </div>
 
+
                 <!-- Hamburger -->
                 <div class=" -mr-2 flex items-center sm:hidden">
                     <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -68,7 +66,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+
 
 
     </nav>

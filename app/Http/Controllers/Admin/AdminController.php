@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
@@ -17,9 +18,17 @@ class AdminController extends Controller
     public function index()
     {
 
+        if (Gate::denies('authorised')) {
+            dd('no access');
+        }
 
-        return view('admin.users.userView', ['users' => User::paginate(10)]);
+        if (Gate::allows('isAdmin')) {
+            return view('admin.users.userView', ['users' => User::paginate(10)]);
+        }
+
+        dd('not admin');
     }
+
 
     /**
      * Show the form for creating a new resource.

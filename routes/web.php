@@ -28,6 +28,10 @@ Route::get('/my-profile', function () {
     return view('my-profile');
 })->middleware(['auth', 'verified'])->name('my-profile');
 
+Route::get('/admin/users', function () {
+    return view('admin.users.userView');
+})->middleware(['auth', 'verified'])->name('users');
+
 require __DIR__ . '/auth.php';
 
 
@@ -37,6 +41,6 @@ Route::get('auth/google/callback', [GoogleLoginController::class, 'handleCallbac
 
 
 //admin routes 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function () {
     Route::resource('/users', AdminController::class);
 });
