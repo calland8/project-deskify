@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -17,7 +18,7 @@ class AdminController extends Controller
     {
 
 
-        return view('admin.users.userView', ['users' => User::all()]);
+        return view('admin.users.userView', ['users' => User::paginate(10)]);
     }
 
     /**
@@ -27,7 +28,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        // create a new user view
+        return view('admin.users.create', ['roles' => Role::all()]);
     }
 
     /**
@@ -38,8 +40,15 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // create and store new user objecty
+        $user = User::create($request->except(['_token', 'roles']));
+
+        $user->roles()->sync($request->roles);
+
+        return redirect(route('admin.users.index'));
     }
+
+
 
     /**
      * Display the specified resource.
@@ -61,6 +70,13 @@ class AdminController extends Controller
     public function edit($id)
     {
         //
+        return view(
+            'admin.users.edit',
+            [
+                'roles' => Role::all(),
+                'user' => User::find($id)
+            ]
+        );
     }
 
     /**
@@ -72,7 +88,14 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //update the correct user details
+        $user = User::findOrFail($id);
+
+        $user->update($request->except(['_token', 'roles']));
+
+        $user->roles()->sync($request->roles);
+
+        return redirect(route('admin.users.index'));
     }
 
     /**
@@ -81,8 +104,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        //delete a user
+        User::destroy($id);
+
+        return back()->with('success', 'User deleted');
     }
 }

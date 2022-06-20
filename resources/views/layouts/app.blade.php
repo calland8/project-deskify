@@ -32,6 +32,7 @@
         <!-- Page Content -->
         <main>
             <div class="container">
+                @include('admin/users/standard/alert')
                 @yield('content')
         </main>
     </div>
