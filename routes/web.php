@@ -43,4 +43,5 @@ Route::get('auth/google/callback', [GoogleLoginController::class, 'handleCallbac
 //admin routes 
 Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function () {
     Route::resource('/users', AdminController::class);
+    Route::post('/users/create', [AdminController::class, 'store']);
 });
