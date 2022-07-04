@@ -9,19 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         //creating role objects
-        // Role::factory()->times(10)->create();
+        //insert admin to name column
         DB::table('roles')->insert([
             'name' => 'admin'
         ]);
-
+        //insert staff to name column 
         DB::table('roles')->insert([
             'name' => 'staff'
         ]);

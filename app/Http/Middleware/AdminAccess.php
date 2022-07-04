@@ -17,12 +17,11 @@ class AdminAccess
      */
     public function handle(Request $request, Closure $next)
     {
-
-
+        // if the user is an admin pass them to the next request 
+        // else serve a redirect 
         if (Gate::allows('isAdmin')) {
             return $next($request);
         }
-
         return redirect('/');
     }
 }

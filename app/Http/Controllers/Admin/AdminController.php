@@ -7,6 +7,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Password;
 
 class AdminController extends Controller
 {
@@ -17,16 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-
-        if (Gate::denies('authorised')) {
-            dd('no access');
-        }
-
-        if (Gate::allows('isAdmin')) {
-            return view('admin.users.userView', ['users' => User::paginate(10)]);
-        }
-
-        dd('not admin');
+        return view('admin.users.userView', ['users' => User::paginate(10)]);
     }
 
 
@@ -37,10 +29,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        // create a new user view
+        // return create a new user view
         return view('admin.users.create', ['roles' => Role::all()]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -49,11 +40,13 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        // create and store new user objecty
+        // create and store new user object
         $user = User::create($request->except(['_token', 'roles']));
-
+        //show roles
         $user->roles()->sync($request->roles);
-
+        //send password reset so user can choose own password
+        Password::sendResetLink($request->only(['email']));
+        //redirect back to users
         return redirect(route('admin.users.index'));
     }
 
@@ -78,16 +71,12 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
         return view(
             'admin.users.edit',
-            [
-                'roles' => Role::all(),
-                'user' => User::find($id)
-            ]
+            // get the role of the user and find the correct user by id
+            ['roles' => Role::all(), 'user' => User::find($id)]
         );
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -98,6 +87,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         //update the correct user details
+        //get the first result matching id or error
         $user = User::findOrFail($id);
 
         $user->update($request->except(['_token', 'roles']));
@@ -117,7 +107,7 @@ class AdminController extends Controller
     {
         //delete a user
         User::destroy($id);
-
+        // prompt confirming user deleted 
         return back()->with('success', 'User deleted');
     }
 }

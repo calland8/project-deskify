@@ -31,9 +31,6 @@ return new class extends Migration
      * @return void
      */
     public function down()
-    // {
-    //     Schema::dropIfExists('role_user');
-    // }
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 

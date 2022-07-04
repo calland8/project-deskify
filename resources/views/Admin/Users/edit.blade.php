@@ -8,6 +8,7 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
         <form method="POST" action="{{ route('admin.users.update', $user->id) }}">
             @csrf
             @method('PATCH')
@@ -24,7 +25,7 @@
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ old('email') }} {{ $user->email }}" />
             </div>
-
+            <!-- Roles  -->
             <div class=" mb-6">
                 @foreach($roles as $role)
                 <div class="form-check">
@@ -36,11 +37,10 @@
                 </div>
                 @endforeach
             </div>
-
             <x-button class="ml-4">
                 {{ __('Submit') }}
             </x-button>
-
         </form>
+
     </x-auth-card>
 </x-guest-layout>
