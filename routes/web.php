@@ -39,7 +39,6 @@ require __DIR__ . '/auth.php';
 Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleLoginController::class, 'handleCallback']);
 
-
 //admin routes 
 Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function () {
     Route::resource('/users', AdminController::class);
