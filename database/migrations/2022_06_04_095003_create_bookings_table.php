@@ -20,8 +20,12 @@ return new class extends Migration
             $table->dateTime('bookingStart');
             $table->dateTime('bookingEnd');
             $table->boolean("isBooked");
-            $table->foreignId('users_id');
-            $table->foreignId('desks_id');
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('desk_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('desk_id')->references('id')->on('desks');
         });
     }
 

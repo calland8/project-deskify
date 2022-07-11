@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('offices', function (Blueprint $table) {
-            $table->id();
+        Schema::create('desks', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->timestamps();
-
-            $table->string('location');
+            $table->string('room');
+            // $table->boolean('available');
+            $table->unsignedBigInteger('office_id');
+            $table->foreign('office_id')->references('id')->on('offices');
         });
     }
+
+
 
     /**
      * Reverse the migrations.
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offices');
+        Schema::dropIfExists('desks');
     }
 };

@@ -28,6 +28,10 @@ Route::get('/my-profile', function () {
     return view('my-profile');
 })->middleware(['auth', 'verified'])->name('my-profile');
 
+Route::get('/bookings', function () {
+    return view('booking.bookingView');
+})->middleware(['auth', 'verified'])->name('bookings');
+
 Route::get('/admin/users', function () {
     return view('admin.users.userView');
 })->middleware(['auth', 'verified'])->name('users');

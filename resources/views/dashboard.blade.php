@@ -1,22 +1,10 @@
 @extends('layouts/app')
-
 @section('content')
-<div id="booking" class="section">
-    <div class="section-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 col-md-push-5">
-                    <div class="booking-cta">
-                        <h1>Make your reservation</h1>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="jumbotron">
+
     </div>
 </div>
-
-
 
 @endsection
 <!-- <x-app-layout>

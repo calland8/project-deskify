@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Desks extends Model
 {
     use HasFactory;
+
+
+    public function office()
+    {
+
+        return $this->belongsTo('App\models\Office');
+    }
 }
