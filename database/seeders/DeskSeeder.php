@@ -20,15 +20,18 @@ class DeskSeeder extends Seeder
         $desks = [
             [
                 'room' => 'meeting room 1',
-                'office_id' => 1
+                'office_id' => 1,
+                'desk_number' => 1
             ],
             [
                 'room' => 'meeting room 2',
-                'office_id' => 2
+                'office_id' => 2,
+                'desk_number' => 2
             ],
             [
                 'room' => 'meeting room 3',
-                'office_id' => 1
+                'office_id' => 1,
+                'desk_number' => 3
             ],
 
         ];
@@ -37,7 +40,8 @@ class DeskSeeder extends Seeder
         foreach ($desks as $desk) {
             Desks::create(array(
                 'room' => $desk['room'],
-                'office_id' => $desk['office_id']
+                'office_id' => $desk['office_id'],
+                'desk_number' => $desk['desk_number']
             ));
         }
     }

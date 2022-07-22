@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\Office;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -21,9 +23,15 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($office_id)
     {
-        //
+
+
+        //get the data for the selected office to show the desks
+        $officeData = Office::with('desks')->get()->find($office_id);
+
+        // show create form 
+        return view('booking.create', compact('officeData'));
     }
 
     /**
@@ -34,7 +42,10 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // create and store a booking
+        Booking::create($request->all());
+
+        return redirect(view('booking.create', compact('officeData')));
     }
 
     /**

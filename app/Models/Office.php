@@ -10,7 +10,7 @@ class Office extends Model
     use HasFactory;
 
 
-    public function desk()
+    public function desks()
     {
         return $this->hasMany('App\Models\Desks');
     }

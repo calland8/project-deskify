@@ -13,4 +13,9 @@ class Booking extends Model
     {
         return $this->belongsTo('App\Models\Desks');
     }
+
+    public function timeslot()
+    {
+        return $this->belongsTo('App\Models\Timeslot');
+    }
 }

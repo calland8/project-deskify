@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleUserSeeder::class);
         $this->call(OfficeSeeder::class);
         $this->call(DeskSeeder::class);
+        $this->call(TimeslotSeeder::class);
     }
 }
