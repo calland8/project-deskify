@@ -15,4 +15,14 @@ class OfficeController extends Controller
 
         return view('booking.offices')->with('offices', $offices);
     }
+
+
+    public function showDesks($office_id)
+    {
+        //get the data for the selected office to show the desks
+        $officeData = Office::with('desks')->get()->find($office_id);
+
+        // show create form 
+        return view('booking.desks', compact('officeData'));
+    }
 }

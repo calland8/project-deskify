@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $office->name }}</h5>
                     <small class="text-muted">{{ $office->location }}</small>
-                    <a href="/booking/create/{{ $office->id }}" class="btn btn-primary">Book Now</a>
+                    <a href="/bookings/offices/{{ $office->id }}/desks" class="btn btn-primary">View Desks</a>
                 </div>
             </div>
         </div>

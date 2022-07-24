@@ -38,6 +38,9 @@ Route::get('/bookings', function () {
 Route::get('/bookings/offices', [OfficeController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('offices');
 
+Route::get('/bookings/offices/{id}/desks', [OfficeController::class, 'showDesks'])
+    ->middleware(['auth', 'verified'])->name('desks');
+
 Route::get('/booking/create/{id}', [BookingController::class, 'create'])
     ->middleware(['auth', 'verified'])->name('bookingCreate');
 
