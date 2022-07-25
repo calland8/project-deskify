@@ -31,6 +31,12 @@ Route::get('/my-profile', function () {
     return view('my-profile');
 })->middleware(['auth', 'verified'])->name('my-profile');
 
+
+
+//booking routes 
+
+Route::resource('booking', BookingController::class)->except('create');
+
 Route::get('/bookings', function () {
     return view('booking.bookingView');
 })->middleware(['auth', 'verified'])->name('bookings');
@@ -41,12 +47,10 @@ Route::get('/bookings/offices', [OfficeController::class, 'index'])
 Route::get('/bookings/offices/{id}/desks', [OfficeController::class, 'showDesks'])
     ->middleware(['auth', 'verified'])->name('desks');
 
-Route::get('/booking/create/{id}', [BookingController::class, 'create'])
-    ->middleware(['auth', 'verified'])->name('bookingCreate');
+// Route::get('/bookings/offices/{id}/desks/{id}', [BookingController::class, 'create'])
+//     ->middleware(['auth', 'verified'])->name('bookingCreate');
 
-Route::get('/admin/users', function () {
-    return view('admin.users.userView');
-})->middleware(['auth', 'verified'])->name('users');
+
 
 require __DIR__ . '/auth.php';
 
@@ -61,11 +65,13 @@ Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function
     Route::post('/users/create', [AdminController::class, 'store']);
 });
 
-//booking routes
-// Route::prefix('bookings')->middleware('auth', 'verified')->name('bookings.')->group(function () {
-//     // Route::resource('/', BookingController::class);
-//     Route::get('/bookings/offices', [OfficeController::class, 'index']);
-//     Route::post('/create', [BookingController::class, 'store']);
-// });
-Route::get('bookings/create/{id}', 'ReservationController@create');
+Route::get('/admin/users', function () {
+    return view('admin.users.userView');
+})->middleware(['auth', 'verified'])->name('users');
+
+
+
 Route::resource('booking', BookingController::class)->except('create');
+
+
+Route::get('/timeslots', [OfficeController::class, 'showTimeslots'])->middleware(['auth', 'verified'])->name('showTimeslots');
