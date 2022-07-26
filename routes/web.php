@@ -19,6 +19,7 @@ use App\Http\Controllers\OfficeController;
 |
 */
 
+// navigation routes
 Route::get('/', function () {
     return view('landing');
 });
@@ -65,13 +66,7 @@ Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function
     Route::post('/users/create', [AdminController::class, 'store']);
 });
 
-Route::get('/admin/users', function () {
-    return view('admin.users.userView');
-})->middleware(['auth', 'verified'])->name('users');
 
-
-
-Route::resource('booking', BookingController::class)->except('create');
 
 
 Route::get('/timeslots', [OfficeController::class, 'showTimeslots'])->middleware(['auth', 'verified'])->name('showTimeslots');

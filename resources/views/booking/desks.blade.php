@@ -16,7 +16,7 @@
                         <input type="text" value="{{$desks->id}}">
                         <input type="submit" value="View Dates" class="btn btn-primary">
                     </form> -->
-                    <a href="/timeslots" class="btn btn-primary">View Desks</a>
+                    <a href="/timeslots" class="btn btn-primary">View Slots</a>
                 </div>
             </div>
         </div>
