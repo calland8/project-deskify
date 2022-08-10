@@ -16,7 +16,7 @@
         <!-- Container wrapper -->
         <div class="container">
             <!-- Navbar brand -->
-            <a class="navbar-brand me-2" href="">
+            <a class="navbar-brand me-2" href="/bookings">
                 DESKIFY
             </a>
 

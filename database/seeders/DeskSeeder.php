@@ -16,7 +16,6 @@ class DeskSeeder extends Seeder
     public function run()
     {
         // desks objects for seeding purposes
-        //array of set of desk objects
         $desks = [
             [
                 'room' => 'meeting room 1',

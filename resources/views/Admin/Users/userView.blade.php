@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>h1. Bootstrap heading</h1>
+            <h3 class="display-5 fw-bold">Users:</h3>
             <a class="btn btn-sm btn-success float-right" href="{{ route('admin.users.create') }}" role="button">Create User</a>
         </div>
     </div>

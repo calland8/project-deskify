@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\GoogleSocialiteController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\OfficeController;
+use Database\Seeders\BookingSeeder;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,11 @@ use App\Http\Controllers\OfficeController;
 
 // navigation routes
 Route::get('/', function () {
-    return view('landing');
+    return view('');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('booking.bookingView');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/my-profile', function () {
@@ -36,17 +37,23 @@ Route::get('/my-profile', function () {
 
 //booking routes 
 
-Route::resource('booking', BookingController::class)->except('create');
+Route::resource('booking', BookingController::class)->middleware(['auth', 'verified']);
 
-Route::get('/bookings', function () {
-    return view('booking.bookingView');
-})->middleware(['auth', 'verified'])->name('bookings');
+
+Route::get('/bookings', [BookingController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('bookings');
+
+Route::delete('/cancelBooking/{id}', [BookingController::class, 'destroy'])
+    ->middleware(['auth', 'verified'])->name('cancelBooking');
 
 Route::get('/bookings/offices', [OfficeController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('offices');
 
 Route::get('/bookings/offices/{id}/desks', [OfficeController::class, 'showDesks'])
     ->middleware(['auth', 'verified'])->name('desks');
+
+Route::get('bookings/offices/desks/{id}/timeslots/', [OfficeController::class, 'showTimeslots'])->name('showTimeslots');
+
 
 // Route::get('/bookings/offices/{id}/desks/{id}', [BookingController::class, 'create'])
 //     ->middleware(['auth', 'verified'])->name('bookingCreate');
@@ -69,4 +76,6 @@ Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function
 
 
 
-Route::get('/timeslots', [OfficeController::class, 'showTimeslots'])->middleware(['auth', 'verified'])->name('showTimeslots');
+
+
+Route::post('/bookTimeslot', [OfficeController::class, 'bookTimeslot'])->name('bookingCreate');

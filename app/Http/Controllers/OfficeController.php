@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Office;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Desks;
+use App\Models\User;
+use App\Models\Booking;
 use App\Models\Timeslot;
 use Illuminate\Http\Request;
 
@@ -13,6 +16,7 @@ class OfficeController extends Controller
 
     public function index()
     {
+        //get all offices 
         $offices = Office::all();
 
         return view('booking.offices')->with('offices', $offices);
@@ -21,18 +25,45 @@ class OfficeController extends Controller
 
     public function showDesks($office_id)
     {
-        //get the data for the selected office to show the desks
+        //get the data from the selected office to show the desks
         $officeData = Office::with('desks')->get()->find($office_id);
-
         // show desks
-        return view('booking.desks', compact('officeData'));
+        return view(
+            'booking.desks',
+            compact('officeData'),
+            ['office' => Office::find($office_id)]
+        );
     }
 
-    public function showTimeslots(Request $request)
-    {
-        $desk = $request->input('desk_id');
-        $timeslots = Timeslot::where('desk_id', $desk)->get();
 
+    public function showTimeslots($id)
+    {
+        // get the desk id of the selected desk 
+        $desk = Desks::findorfail($id);
+        //get the timeslots with the chosen desk
+        $timeslots = Timeslot::where('desk_id', $desk->id)->get();
+        // return the view with the available timeslots
         return view('booking.create', ['timeslots' => $timeslots]);
+    }
+
+
+
+
+
+    public function bookTimeslot(Request $request)
+    {
+        // create and store a booking
+
+        $timeslot_id = $request->input('timeslot_id');
+        $timeslot_date = $request->input('timeslot_date');
+        $desk_id = $request->input('desk_id');
+
+        $booking = new Booking();
+        $booking->timeslot_id = $timeslot_id;
+        $booking->date = $timeslot_date;
+        $booking->user_id = Auth::user()->id;
+        $booking->desk_id = $desk_id;
+
+        $booking->save();
     }
 }

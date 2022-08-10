@@ -28,7 +28,7 @@ class GoogleLoginController extends Controller
             // if not create a new user with social type google 
             if ($finduser) {
                 Auth::login($finduser);
-                return redirect('/dashboard');
+                return redirect('/bookings');
             } else {
                 $newUser = User::create([
                     'name' => $user->name,
@@ -40,7 +40,7 @@ class GoogleLoginController extends Controller
                 // authenticate user
                 Auth::login($newUser);
 
-                return redirect('/dashboard');
+                return redirect('/bookings');
             }
         } catch (Exception $e) {
             dd($e->getMessage());

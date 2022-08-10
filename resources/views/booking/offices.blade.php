@@ -4,6 +4,9 @@
 
 
 <div class="container my-5">
+    <h3 class="display-5 fw-bold">Offices:</h3>
+    <br>
+
     <div class="row">
         <!-- Loop through offices -->
         @foreach ($offices as $office)

@@ -19,21 +19,23 @@ class OfficeSeeder extends Seeder
         $offices = [
             [
                 'name' => 'main office',
-                'location' => 'craigavon'
+                'location' => 'craigavon',
+                'layout' => '/Users/callanduffin/Projects/project-deskify/public/extras/main-office.png'
             ],
             [
                 'name' => 'satellite',
-                'location' => 'dublin'
+                'location' => 'dublin',
+                'layout' => '/Users/callanduffin/Projects/project-deskify/public/extras/logo.png'
             ]
 
         ];
-
 
         // looping through offices array and seeding
         foreach ($offices as $office) {
             Office::create(array(
                 'name' => $office['name'],
-                'location' => $office['location']
+                'location' => $office['location'],
+                'layout' => $office['layout']
             ));
         }
     }

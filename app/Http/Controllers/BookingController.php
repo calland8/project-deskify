@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Office;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        // return the bookings of a user that is logged in
+        $userBookings = Booking::where('user_id', Auth::user()->id)->get();
+        return view('booking.bookingView', ['bookings' => $userBookings]);
     }
 
     /**
@@ -43,9 +46,21 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         // create and store a booking
-        Booking::create($request->all());
 
-        return redirect(view('booking.create', compact('officeData')));
+        $timeslot_id = $request->input('timeslot_id');
+        $timeslot_date = $request->input('timeslot_date');
+        $desk_id = $request->input('desk_id');
+
+        $booking = new Booking();
+        $booking->timeslot_id = $timeslot_id;
+        $booking->date = $timeslot_date;
+        $booking->user_id = Auth::user()->id;
+        $booking->desk_id = $desk_id;
+
+        $booking->save();
+
+
+        return (view('booking.bookingView'));
     }
 
     /**
@@ -90,6 +105,10 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //   //delete a user
+        Booking::destroy($id);
+
+        // confirming booking is deleted
+        return back()->with('success', 'Booking deleted');
     }
 }
