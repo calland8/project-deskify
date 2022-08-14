@@ -18,13 +18,13 @@ class OfficeSeeder extends Seeder
         //creating office object array to seed db
         $offices = [
             [
-                'name' => 'main office',
-                'location' => 'craigavon',
+                'name' => 'Main office',
+                'location' => 'Craigavon ',
                 'layout' => '/Users/callanduffin/Projects/project-deskify/public/extras/main-office.png'
             ],
             [
-                'name' => 'satellite',
-                'location' => 'dublin',
+                'name' => 'Satellite',
+                'location' => 'Dublin',
                 'layout' => '/Users/callanduffin/Projects/project-deskify/public/extras/logo.png'
             ]
 

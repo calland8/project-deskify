@@ -18,20 +18,107 @@ class TimeslotSeeder extends Seeder
         //seed example timeslots into the database 
         $timeslots = [
             [
-                'date' => '2022-08-01',
+                'date' => '2022-08-15',
                 'taken' => 0,
                 'desk_id' => 1
             ],
             [
-                'date' => '2022-08-01',
+                'date' => '2022-08-15',
                 'taken' => 0,
                 'desk_id' => 2
             ],
             [
-                'date' => '2022-08-01',
+                'date' => '2022-08-15',
                 'taken' => 0,
                 'desk_id' => 3
             ],
+            [
+                'date' => '2022-08-16',
+                'taken' => 0,
+                'desk_id' => 1
+            ],
+            [
+                'date' => '2022-08-16',
+                'taken' => 0,
+                'desk_id' => 2
+            ],
+            [
+                'date' => '2022-08-16',
+                'taken' => 0,
+                'desk_id' => 3
+            ],
+            [
+                'date' => '2022-08-17',
+                'taken' => 0,
+                'desk_id' => 1
+            ],
+            [
+                'date' => '2022-08-17',
+                'taken' => 0,
+                'desk_id' => 2
+            ],
+            [
+                'date' => '2022-08-17',
+                'taken' => 0,
+                'desk_id' => 3
+            ],
+            [
+                'date' => '2022-08-18',
+                'taken' => 0,
+                'desk_id' => 1
+            ],
+            [
+                'date' => '2022-08-18',
+                'taken' => 0,
+                'desk_id' => 2
+            ],
+            [
+                'date' => '2022-08-18',
+                'taken' => 0,
+                'desk_id' => 3
+            ],
+            [
+                'date' => '2022-08-19',
+                'taken' => 0,
+                'desk_id' => 1
+            ],
+            [
+                'date' => '2022-08-19',
+                'taken' => 0,
+                'desk_id' => 2
+            ],
+            [
+                'date' => '2022-08-19',
+                'taken' => 0,
+                'desk_id' => 3
+            ],
+            [
+                'date' => '2022-08-15',
+                'taken' => 0,
+                'desk_id' => 35
+            ],
+            [
+                'date' => '2022-08-16',
+                'taken' => 0,
+                'desk_id' => 35
+            ],
+            [
+                'date' => '2022-08-17',
+                'taken' => 0,
+                'desk_id' => 35
+            ],
+            [
+                'date' => '2022-08-18',
+                'taken' => 0,
+                'desk_id' => 35
+            ],
+            [
+                'date' => '2022-08-19',
+                'taken' => 0,
+                'desk_id' => 35
+            ],
+
+
 
         ];
 

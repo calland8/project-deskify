@@ -20,12 +20,12 @@ return new class extends Migration
             $table->dateTime('date');
 
 
-            $table->unsignedBigInteger('office_id');
+
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('desk_id');
             $table->unsignedBigInteger('timeslot_id');
 
-            $table->foreign('office_id')->references('id')->on('offices');
+
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('desk_id')->references('id')->on('desks');
             $table->foreign('timeslot_id')->references('id')->on('timeslots');

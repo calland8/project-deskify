@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Password;
 
@@ -17,7 +18,9 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
+        //return all users in an array to the userview screen - paginate for display
         return view('admin.users.userView', ['users' => User::paginate(10)]);
     }
 
@@ -109,5 +112,22 @@ class AdminController extends Controller
         User::destroy($id);
         // prompt confirming user deleted 
         return back()->with('success', 'User deleted');
+    }
+
+
+    public function userBookings($id)
+    {
+        //find the user via id
+        $user = User::findorfail($id);
+        // get the bookings with the user id
+        $userBookings = Booking::where('user_id', $user->id)->get();;
+
+        return view(
+            'userBooking',
+            [
+                'bookings' => $userBookings,
+                'user' => $user
+            ]
+        );
     }
 }

@@ -37,6 +37,8 @@
                             @csrf
                             @method("Delete")
                         </form>
+
+                        <a class="btn btn-sm btn-primary" href="{{ route('admin.userBookings', $user->id) }}" role="button">View Bookings</a>
                     </td>
                 </tr>
                 @endforeach

@@ -22,7 +22,7 @@ use Database\Seeders\BookingSeeder;
 
 // navigation routes
 Route::get('/', function () {
-    return view('');
+    return view('landing');
 });
 
 Route::get('/dashboard', function () {
@@ -43,6 +43,7 @@ Route::resource('booking', BookingController::class)->middleware(['auth', 'verif
 Route::get('/bookings', [BookingController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('bookings');
 
+
 Route::delete('/cancelBooking/{id}', [BookingController::class, 'destroy'])
     ->middleware(['auth', 'verified'])->name('cancelBooking');
 
@@ -55,8 +56,6 @@ Route::get('/bookings/offices/{id}/desks', [OfficeController::class, 'showDesks'
 Route::get('bookings/offices/desks/{id}/timeslots/', [OfficeController::class, 'showTimeslots'])->name('showTimeslots');
 
 
-// Route::get('/bookings/offices/{id}/desks/{id}', [BookingController::class, 'create'])
-//     ->middleware(['auth', 'verified'])->name('bookingCreate');
 
 
 
@@ -71,6 +70,7 @@ Route::get('auth/google/callback', [GoogleLoginController::class, 'handleCallbac
 Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function () {
     Route::resource('/users', AdminController::class);
     Route::post('/users/create', [AdminController::class, 'store']);
+    Route::get('users/bookings/{id}', [AdminController::class, 'userBookings'])->name('userBookings');
 });
 
 

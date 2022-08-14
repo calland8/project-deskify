@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Office;
+use App\Models\Timeslot;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -105,7 +106,15 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //   //delete a user
+
+        //make the booking available to other users again 
+        $booking = Booking::findorfail($id);
+        $timeslot = $booking->timeslot_id;
+        $takenTimeslot = Timeslot::findorfail($timeslot);
+        $takenTimeslot->taken = '0';
+        $takenTimeslot->save();
+
+        //   //delete a booking
         Booking::destroy($id);
 
         // confirming booking is deleted

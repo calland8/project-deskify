@@ -65,5 +65,12 @@ class OfficeController extends Controller
         $booking->desk_id = $desk_id;
 
         $booking->save();
+
+
+        // make the timeslot unavailable once the booking is made
+        $takenTimeslot = Timeslot::findorfail($timeslot_id);
+        $takenTimeslot->taken = '1';
+        $takenTimeslot->save();
+        return redirect('/bookings');
     }
 }

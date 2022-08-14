@@ -18,13 +18,13 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable(); //value not required
             $table->string('password');
             // $table->integer('isAdmin');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('social_id')->nullable();
-            $table->string('social_type')->nullable();
+            $table->string('social_id')->nullable(); // value not required
+            $table->string('social_type')->nullable(); // value not required
         });
     }
 

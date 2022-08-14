@@ -10,7 +10,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Date</th>
                         <th scope="col">Available</th>
                     </tr>
@@ -18,7 +17,6 @@
                 <tbody>
                     @foreach($timeslots as $timeslot)
                     <tr>
-                        <th scope="row">{{ $timeslot->id }}</th>
                         <td>{{ $timeslot->date }}</td>
                         @if($timeslot->taken)
                         <td>Unavailable</td>

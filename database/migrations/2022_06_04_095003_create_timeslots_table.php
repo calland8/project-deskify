@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->date('date');
+            $table->datetime('date');
             $table->tinyInteger('taken');
 
             $table->unsignedBigInteger('desk_id');
