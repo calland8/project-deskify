@@ -17,7 +17,7 @@ class GoogleLoginController extends Controller
         return Socialite::driver('google')->redirect();
     }
     // handle callback
-    public function handleCallback()
+    public function callback()
     {
         try {
 

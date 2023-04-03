@@ -31,21 +31,6 @@
     </nav>
 
 
-
-    <!-- <section class="bg-light text-dark p-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 d-flex justify-content-center text-center">
-                    <h1>DESKIFY</h1>
-                    <p>Our mission is to provide the most advanced and seamless office space management system available. Helping busines's manage and plan their hybrid working approach.</p>
-                    <button type="button" class="btn btn-primary btn-lg btn-warning">Large button</button>
-                </div>
-                <!-- <div>
-                    <img src="https://i.pinimg.com/originals/b3/3b/25/b33b2569ad41fa1d95439141090ebc8c.jpg" alt="deskify" class="img-fluid w-75 rounded">
-                </div> -->
-    <!-- </div>
-        </div>
-    </section> -->
     <div class="container-xxl bg-dark text-light">
         <div class="px-4 py-5 my-5 text-center">
             <img class="d-block mx-auto mb-4" src="{{ asset('extras/logo.png') }}" alt="" width="72" height="57">
