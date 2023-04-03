@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Desks extends Model
+class Timeslot extends Model
 {
     use HasFactory;
-    public function offices()
+
+
+    public function booking()
     {
-        return $this->belongsTo('App\models\Office');
+        return $this->belongsTo('App\Models\Bookings');
     }
 }

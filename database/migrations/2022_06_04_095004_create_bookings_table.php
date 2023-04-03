@@ -17,11 +17,18 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->dateTime('bookingStart');
-            $table->dateTime('bookingEnd');
-            $table->boolean("isBooked");
-            $table->foreignId('users_id');
-            $table->foreignId('desks_id');
+            $table->dateTime('date');
+
+
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('desk_id');
+            $table->unsignedBigInteger('timeslot_id');
+
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('desk_id')->references('id')->on('desks');
+            $table->foreign('timeslot_id')->references('id')->on('timeslots');
         });
     }
 

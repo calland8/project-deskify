@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
+
+    public function desk()
+    {
+        return $this->belongsTo('App\Models\Desks');
+    }
+
+    public function timeslot()
+    {
+        return $this->belongsTo('App\Models\Timeslot');
+    }
+
+    public function office()
+    {
+        return $this->belongsTo('App\Models\Office');
+    }
 }

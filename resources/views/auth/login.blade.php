@@ -41,12 +41,7 @@
                 </a>
             </div>
             <br>
-            <!-- Sign in -->
-            <!-- <div class="col-md-12 text-center">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                    <strong>{{ __('Register') }}</strong>
-                </a>
-            </div> -->
+
             <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
